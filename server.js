@@ -2,6 +2,10 @@ const express = require('express');
 const axios = require('axios');
 const app = express();
 
+// We need these two lines to enable cors (we talk more about what this is at the end of this file)
+const cors = require('cors');
+app.use(cors());
+
 const PORT = 8000;
 // to see the webpage type in your browser - localhost:8000 (or whatever your port is)
 
@@ -101,7 +105,8 @@ app.listen(8000)
 
 
 // SOLVING SECURITY ISSUE
-// When you try to request anything from your backend localhost (example: localhost:8000) from your frontend Vite localhost (localhost:5713) it will throw an error
+// When you try to request anything from your backend server/domain (example: localhost:8000) from your frontend Vite domain (localhost:5713) it will throw an error
 // This is because BY DEFAULT your Express backend only takes request from the same domain (in this case our Express backend domain is localhost:8000)
 // When we try to take a request from our backend domain from our frontend, different domain (localhost:5713) it says "nah bro, you ain't 8000 idk you like that"
-// THis is where another backend library comes into place called "cors" (npm i cors)
+// This is where another backend library comes into place called "cors" (npm i cors)
+// Cors allows your Express server to take requests from ANY domain (including localhost:5173)
